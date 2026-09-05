@@ -1,5 +1,3 @@
-import Card from "./components/Card"
-import DoctorData from "./components/DoctorData"
 import { Outlet } from "react-router"
 
 const App = () => {

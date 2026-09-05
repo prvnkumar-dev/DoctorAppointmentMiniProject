@@ -2,16 +2,17 @@ import axios from "axios"
 import Card from "./Card"
 import { createContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router"
-import DoctorFullDetails from "./DoctorFullDetails"
 import SearchDoctors from "./SearchDoctors"
-// interface doctorData{
-//     name:string,
-//     phone:string,
-// }
-export const doctorContext = createContext("")
+export const doctorContext = createContext([])
 const DoctorData = () => {
+    interface DoctorData {
+        name: string,
+        email: string,
+        id: number,
+
+    }
     const Navigate = useNavigate()
-    const [doctorData, setDoctorData] = useState([])
+    const [doctorData, setDoctorData] = useState<DoctorData[]>()
     const getDoctorData = async () => {
         const url = "https://jsonplaceholder.typicode.com/users"
         const { data } = await axios.get(url)
@@ -29,10 +30,10 @@ const DoctorData = () => {
         </doctorContext.Provider>
         <section className="flex flex-wrap justify-evenly">
             {
-                doctorData ? doctorData.map((item, index) => {
+                doctorData ? doctorData.map((item) => {
                     return (
-                        <Card width={"w-100"}>
-                            <div className="doctor-data-box flex gap-5" key={item.id} onClick={() => Navigate(`/doctordetails/${item.id}`)}>
+                        <Card width={"w-100"} key={item.id}>
+                            <div className="doctor-data-box flex gap-5" onClick={() => Navigate(`/doctordetails/${item.id}`)}>
                                 <div>
                                     <div className=" flex w-[50px] h-[50px] border-1 border-black rounded-full items-center justify-center">+</div>
                                 </div>
@@ -47,12 +48,6 @@ const DoctorData = () => {
                 }) : null
             }
         </section>
-        {
-            <doctorContext.Provider value={doctorData}>
-                <DoctorFullDetails />
-
-            </doctorContext.Provider>
-        }
     </>
 }
 export default DoctorData

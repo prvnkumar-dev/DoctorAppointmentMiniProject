@@ -1,18 +1,16 @@
-import { useContext, useState } from "react"
+import { useState } from "react"
 import Card from "./Card"
-import { doctorContext } from "./DoctorData"
 
 const SearchDoctors = () => {
-    const [doctorSearchResult, setDoctorSearchResult] = useState()
-    const doctorContextData = useContext(doctorContext)
+    // const [doctorSearchResult, setDoctorSearchResult] = useState({})
+    // const doctorContextData = useContext(doctorContext)
     const [doctorInputValue, setDoctorInputValue] = useState("")
     // const [doctorData, setDoctorData] = useState([])
-    const searchResult = (val) => {
-        console.log(val)
+    const searchResult = (val: string) => {
         setDoctorInputValue(val)
-        const data = doctorContextData.filter((item) => item.name == val)
-        console.log(data)
-        setDoctorSearchResult(data)
+        // const data = doctorContextData.filter((item) => item.name == val)
+        // setDoctorSearchResult(data)
+        // console.log(data)
     }
     return <>
         <div className="relative">
