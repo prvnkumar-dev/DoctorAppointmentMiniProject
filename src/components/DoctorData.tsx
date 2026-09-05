@@ -32,7 +32,7 @@ const DoctorData = () => {
                 doctorData ? doctorData.map((item, index) => {
                     return (
                         <Card width={"w-100"}>
-                            <div className="doctor-data-box flex gap-5" key={item.id} onClick={() => Navigate("/doctorFullDetails")}>
+                            <div className="doctor-data-box flex gap-5" key={item.id} onClick={() => Navigate(`/doctordetails/${item.id}`)}>
                                 <div>
                                     <div className=" flex w-[50px] h-[50px] border-1 border-black rounded-full items-center justify-center">+</div>
                                 </div>

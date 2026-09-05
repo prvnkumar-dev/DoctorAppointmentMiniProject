@@ -6,15 +6,22 @@ import { createBrowserRouter } from 'react-router'
 import { RouterProvider } from 'react-router/dom'
 import Dashboard from './components/Dashboard.tsx'
 import DoctorFullDetails from './components/DoctorFullDetails.tsx'
+import DoctorData from './components/DoctorData.tsx'
 
 const route = createBrowserRouter([
   {
     path: "/",
-    element: <Dashboard />
-  },
-  {
-    path: "doctorFullDetails",
-    element: <DoctorFullDetails />
+    element: <App />,
+    children: [
+      {
+        index: true,
+        element: <Dashboard />
+      },
+      {
+        path: "doctordetails/:id",
+        element: <DoctorFullDetails />
+      }
+    ]
   }
 ])
 
